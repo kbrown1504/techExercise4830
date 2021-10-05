@@ -72,12 +72,6 @@ public class ListView extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DBConnectionBrown dbCon = new DBConnectionBrown(this.getServletContext());
-		String dateStr = request.getParameter("date") + " " + request.getParameter("time");
-		String title = request.getParameter("title");
-		String desc = request.getParameter("desc");
-		ListItem toAdd = new ListItem(dateStr, title, desc);
-		dbCon.insert(toAdd);
 		doGet(request, response);
 	}
 

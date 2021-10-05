@@ -34,7 +34,7 @@ public class DBConnectionBrown {
 		getDBConnection();
 	}
 	
-	public void insert(ListItem item) {
+	public boolean insert(ListItem item) {
 		String sql = String.format("insert into ToDoList (DUEDATE, TITLE, DESCRIPTION)" +
 			"values('%s:00', '%s', '%s');",
 		item.getDueDate(), item.getTitle(), item.getDesc());
@@ -44,6 +44,7 @@ public class DBConnectionBrown {
 				prepState = connection.prepareStatement(sql);
 				try {
 					prepState.execute();
+					return true;
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
@@ -53,6 +54,7 @@ public class DBConnectionBrown {
 				e.printStackTrace();
 			}
 		}
+		return false;
 	}
 	
 	public ResultSet getAll() {
