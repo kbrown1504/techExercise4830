@@ -1,3 +1,16 @@
 <div style="background-color:afafaf;padding:10px;display:flex;justify-content:space-between;">
 	<h1 style="color:white; text-align:center;">Add a New Task</h1>
 </div>
+
+<br>
+<form action="ListView" method="POST">
+	Date: <input placeholder="MM/DD/YYYY" type="date" name="date">
+	<br><br>
+	Time: <input placeholder="HH:MM AM/PM" type="time" name="time" required="required">
+	<br><br>
+	Title: <input placeholder="Title" type="text" name="title" required="required">
+	<br><br>
+	<textarea rows="6" cols="50" name="desc" placeholder="Description..."></textarea>
+	<br><br>
+	<input type="submit" value="Add Task">
+</form>
