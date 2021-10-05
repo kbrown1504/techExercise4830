@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,6 +36,30 @@ public class ListView extends HttpServlet {
 		);
 		DBConnectionBrown dbCon = new DBConnectionBrown(this.getServletContext());
 		ResultSet list = dbCon.getAll();
+		try {
+			while(list.next()) {
+				String dateStr = list.getString("duedate");
+				String title = list.getString("title");
+				String desc = list.getString("description");
+				
+				String htmlStr = String.format(
+					"<div style=\"width:%s;float:left;padding:10px;margin:10px;border-radius:25px;"
+					+ "box-shadow: 5px 5px 3px #aaaaaa;border: 1px solid #aaaaaa;\">"
+					+ "	<h3>%s</h3>"
+					+ "	<h4>%s</h4>"
+					+ "	<p>%s</p>"
+					+ "	<button>Edit</button>"
+					+ "	<button>Delete</button>"
+					+ "</div>",
+					"90%", dateStr, title, desc
+				);
+				
+				response.getWriter().append(htmlStr);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

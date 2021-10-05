@@ -59,7 +59,7 @@ public class DBConnectionBrown {
 	public ResultSet getAll() {
 		ResultSet rs = null;
 		
-		String sql = "select * from ToDoList order by DUEDATE DESC;";
+		String sql = "select * from ToDoList order by DUEDATE ASC;";
 		PreparedStatement prepState = null;
 		if (connection != null) {
 			try {
