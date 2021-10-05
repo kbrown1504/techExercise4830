@@ -43,6 +43,7 @@ public class ListView extends HttpServlet {
 		ResultSet list = dbCon.getAll();
 		try {
 			while(list.next()) {
+				String dbId = list.getString("id");
 				String dateStr = list.getString("duedate");
 				String title = list.getString("title");
 				String desc = list.getString("description");
@@ -53,10 +54,16 @@ public class ListView extends HttpServlet {
 					+ "	<h3>%s</h3>"
 					+ "	<h4>%s</h4>"
 					+ "	<p>%s</p>"
-					+ "	<button onclick=\"location.href='edit_task.html'\">Edit</button>"
-					+ "	<button>Delete</button>"
+					+ "	<form action\"TaskEdit\" method=\"POST\">"
+					+ "		<button type=\"sumbit\" name=\"button\" value=\"edit\">Edit</button>"
+					+ "		<input type=\"text\" name=\"id\" value=\"%s\" style=\"display:none;\">"
+					+ "	</form>"
+					+ "<form action\"DeleteTask\" method=\"POST\">"
+					+ "		<button type=\"sumbit\" name=\"button\" value=\"delete\">Delete</button>"
+					+ "		<input type=\"text\" name=\"id\" value=\"%s\" style=\"display:none;\">"
+					+ "	</form>"
 					+ "</div>",
-					"90%", dateStr, title, desc
+					"90%", dateStr, title, desc, dbId, dbId
 				);
 				
 				response.getWriter().append(htmlStr);
@@ -71,7 +78,6 @@ public class ListView extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
