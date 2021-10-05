@@ -1,6 +1,8 @@
 
 
 import java.io.IOException;
+import java.sql.ResultSet;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +37,9 @@ public class DeleteTask extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String dbId = request.getParameter("id");
+		DBConnectionBrown dbCon = new DBConnectionBrown(this.getServletContext());
+		ResultSet toDelete = dbCon.get(dbId);
 	}
 
 }

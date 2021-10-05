@@ -76,9 +76,54 @@ public class DBConnectionBrown {
 				e.printStackTrace();
 			}
 		}
-		
 		return rs;
+	}
+	
+	public ResultSet get(String dbId) {
+		ResultSet rs = null;
 		
+		String sql = "select * from ToDoList where ID='" + dbId + "';";
+		PreparedStatement prepState = null;
+		if (connection != null) {
+			try {
+				prepState = connection.prepareStatement(sql);
+				try {
+					rs = prepState.executeQuery();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return rs;
+	}
+	
+	public boolean update(String dbId) {
+		return false;
+	}
+	
+	public boolean delete(String dbId) {
+		String sql = "delete from ToDoList where ID='" + dbId + "';";
+		PreparedStatement prepState = null;
+		if (connection != null) {
+			try {
+				prepState = connection.prepareStatement(sql);
+				try {
+					prepState.execute();
+					return true;
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 	
 	static String getURL() {
