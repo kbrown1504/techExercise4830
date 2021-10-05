@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
 
+import datamodels.ListItem;
+
 public class DBConnectionBrown {
 	
 	static Connection connection = null;
@@ -32,14 +34,47 @@ public class DBConnectionBrown {
 		getDBConnection();
 	}
 	
-	public void insert() {
-		//TODO: Implement
+	public void insert(ListItem item) {
+		String sql = String.format("insert into ToDoList (DUEDATE, TITLE, DESCRIPTION)" +
+			"values('%d-%d-%d %d:%d:00', '%s', '%s');",
+			item.getDueDate().getYear(), item.getDueDate().getMonth(), item.getDueDate().getDay(),
+			item.getDueDate().getHours(), item.getDueDate().getMinutes(), item.getTitle(), item.getDesc());
+		PreparedStatement prepState = null;
+		if (connection != null) {
+			try {
+				prepState = connection.prepareStatement(sql);
+				try {
+					prepState.execute();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
-	public ResultSet getResults(String username, String email, String phoneNum) {
+	public ResultSet getAll() {
 		ResultSet rs = null;
 		
-		//TODO: Implement
+		String sql = "select * from ToDoList order by DUEDATE DESC;";
+		PreparedStatement prepState = null;
+		if (connection != null) {
+			try {
+				prepState = connection.prepareStatement(sql);
+				try {
+					rs = prepState.executeQuery();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		return rs;
 		

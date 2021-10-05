@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.sql.ResultSet;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +33,8 @@ public class ListView extends HttpServlet {
 			+ "	<h1 style=\"color:white; text-align:center;\">My To-Do List</h1>"
 			+ "</div>"
 		);
+		DBConnectionBrown dbCon = new DBConnectionBrown(this.getServletContext());
+		ResultSet list = dbCon.getAll();
 	}
 
 	/**
