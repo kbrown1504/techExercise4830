@@ -30,8 +30,11 @@ public class ListView extends HttpServlet {
 		// TODO: Get and display List!
 		response.setContentType("text/html");
 		response.getWriter().append(
-			"<div style=\"background-color:blue;\">"
+			"<div style=\"background-color:afafaf;padding:10px;display:flex;justify-content:space-between;\">"
 			+ "	<h1 style=\"color:white; text-align:center;\">My To-Do List</h1>"
+			+ "<button onclick=\"location.href='new_task.html'\">Add Task</button>"
+			//Was going to use an anchor here, but found a way to have buttons access links.
+			//https://stackoverflow.com/questions/2906582/how-to-create-an-html-button-that-acts-like-a-link
 			+ "</div>"
 		);
 		DBConnectionBrown dbCon = new DBConnectionBrown(this.getServletContext());
