@@ -36,9 +36,8 @@ public class DBConnectionBrown {
 	
 	public void insert(ListItem item) {
 		String sql = String.format("insert into ToDoList (DUEDATE, TITLE, DESCRIPTION)" +
-			"values('%d-%d-%d %d:%d:00', '%s', '%s');",
-			item.getDueDate().getYear(), item.getDueDate().getMonth(), item.getDueDate().getDay(),
-			item.getDueDate().getHours(), item.getDueDate().getMinutes(), item.getTitle(), item.getDesc());
+			"values('%s:00', '%s', '%s');",
+		item.getDueDate(), item.getTitle(), item.getDesc());
 		PreparedStatement prepState = null;
 		if (connection != null) {
 			try {

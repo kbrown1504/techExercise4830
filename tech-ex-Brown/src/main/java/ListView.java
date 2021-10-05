@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import datamodels.ListItem;
+
 /**
  * Servlet implementation class ListView
  */
@@ -51,7 +53,7 @@ public class ListView extends HttpServlet {
 					+ "	<h3>%s</h3>"
 					+ "	<h4>%s</h4>"
 					+ "	<p>%s</p>"
-					+ "	<button>Edit</button>"
+					+ "	<button onclick=\"location.href='edit_task.html'\">Edit</button>"
 					+ "	<button>Delete</button>"
 					+ "</div>",
 					"90%", dateStr, title, desc
@@ -71,6 +73,12 @@ public class ListView extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		DBConnectionBrown dbCon = new DBConnectionBrown(this.getServletContext());
+		String dateStr = request.getParameter("date") + " " + request.getParameter("time");
+		String title = request.getParameter("title");
+		String desc = request.getParameter("desc");
+		ListItem toAdd = new ListItem(dateStr, title, desc);
+		dbCon.insert(toAdd);
+		doGet(request, response);
 	}
 
 }
