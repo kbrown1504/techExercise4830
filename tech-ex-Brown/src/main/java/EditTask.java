@@ -1,7 +1,6 @@
 
 
 import java.io.IOException;
-import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -57,7 +56,8 @@ public class EditTask extends HttpServlet {
 						+ "<textarea rows=\"6\" cols=\"50\" name=\"desc\">%s</textarea>"
 						+ "<br><br>"
 						+ "<input type=\"Submit\" value=\"Save Changes\">"
-						+ "</form>", formDate, time, title, desc, desc);
+						+ "<input type=\"text\" value=\"%s\" name=\"id\" style=\"display:none;\">"
+						+ "</form>", formDate, time, title, desc, dbId);
 				response.getWriter().append(htmlString);
 			} else {
 				response.getWriter().append("ERROR: Invalid task selected for editing.");
@@ -79,6 +79,27 @@ public class EditTask extends HttpServlet {
 		
 		String dbId = request.getParameter("id");
 		DBConnectionBrown dbCon = new DBConnectionBrown(this.getServletContext());
+		
+		String newDate = request.getParameter("date") + " " + request.getParameter("time");
+		String newTitle = request.getParameter("title");
+		String newDesc = request.getParameter("desc");
+		boolean success = dbCon.update(dbId, newDate, newTitle, newDesc);
+		if (success) {
+			response.getWriter().append("Successfully updated record!");
+			String htmlStr = String.format(
+					"<div style=\"width:%s;padding:10px;margin:10px;border-radius:25px;"
+					+ "box-shadow: 5px 5px 3px #aaaaaa;border: 1px solid #aaaaaa;\">"
+					+ "	<h3>%s</h3>"
+					+ "	<h4>%s</h4>"
+					+ "	<p>%s</p>"
+					+ "</div>",
+					"90%", newDate, newTitle, newDesc);
+			response.getWriter().append(htmlStr);
+		}
+		else {
+			response.getWriter().append("ERROR: Could not update record.");
+		}
+		response.getWriter().append("<br><a href=\"ListView\">View List</a>");
 	}
 
 }

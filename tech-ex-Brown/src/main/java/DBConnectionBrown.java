@@ -101,7 +101,36 @@ public class DBConnectionBrown {
 		return rs;
 	}
 	
-	public boolean update(String dbId) {
+	//Reference for Troubleshooting Update SQL
+	//https://www.mysqltutorial.org/mysql-jdbc-update
+	public boolean update(String dbId, String newDate, String newTitle, String newDesc) {
+		String sql = "update ToDoList "
+				+ "set DUEDATE=?, TITLE=?, DESCRIPTION=? "
+				+ "where ID=?;";
+		PreparedStatement prepState = null;
+		if (connection != null) {
+			try {
+				prepState = connection.prepareStatement(sql);
+				
+				Integer idObj = Integer.parseInt(dbId);
+				int id = idObj.intValue();
+				
+				prepState.setString(1, newDate);
+				prepState.setString(2, newTitle);
+				prepState.setString(3, newDesc);
+				prepState.setInt(4, id);
+				try {
+					prepState.executeUpdate();
+					return true;
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return false;
 	}
 	
