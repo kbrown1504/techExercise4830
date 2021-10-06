@@ -42,16 +42,8 @@ public class EditTask extends HttpServlet {
 		try {
 			if(toEdit.next()) {
 				String date = toEdit.getString("duedate");
-				
 				String time = date.substring(11);
-				System.out.println(date);
-//				String month = date.substring(8,10);
-//				String day = date.substring(5,7);
-//				String year = date.substring(0,4);
-//				date = month + day + year;
 				String formDate = date.substring(0,10);
-				
-				System.out.println("\"" + date + "\"");
 				String title = toEdit.getString("title");
 				String desc = toEdit.getString("description");
 				String htmlString = 
