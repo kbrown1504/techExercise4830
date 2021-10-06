@@ -55,13 +55,13 @@ public class EditTask extends HttpServlet {
 				String title = toEdit.getString("title");
 				String desc = toEdit.getString("description");
 				String htmlString = 
-						String.format("<form action=\"EditTask\" method=\"POST\">"
+						String.format("<br><form action=\"EditTask\" method=\"POST\">"
 						+ "Date: <input type=\"date\" name=\"date\" value=\"%s\">"
-						+ "<br>"
+						+ "<br><br>"
 						+ "Time: <input type=\"time\" name=\"time\" value=\"%s\">"
-						+ "<br>"
+						+ "<br><br>"
 						+ "	Title: <input type=\"text\" name=\"title\" value=\"%s\">"
-						+ "<br>"
+						+ "<br><br>"
 						+ "<textarea rows=\"6\" cols=\"50\" name=\"desc\">%s</textarea>"
 						+ "<br><br>"
 						+ "<input type=\"Submit\" value=\"Save Changes\">"
