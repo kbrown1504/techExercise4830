@@ -40,7 +40,7 @@ public class ListInsert extends HttpServlet {
 		response.setContentType("text/html");
 		
 		response.getWriter().append(
-				"<div style=\"background-color:afafaf;padding:10px;display:flex;justify-content:space-between;\">"
+				"<div style=\"background-color:4281f5;padding:10px;display:flex;justify-content:space-between;\">"
 				+ "	<h1 style=\"color:white; text-align:center;\">Add a New Task</h1>"
 				+ "</div>"
 			);
@@ -53,7 +53,7 @@ public class ListInsert extends HttpServlet {
 		boolean success = dbCon.insert(toAdd);
 		response.getWriter().append("<div style=\"display:block;\">");
 		if(success) {
-			response.getWriter().append("<h2>Task added to database!</h2><br>");
+			response.getWriter().append("Task added to database!");
 			String htmlStr = String.format(
 					"<div style=\"width:%s;padding:10px;margin:10px;border-radius:25px;"
 					+ "box-shadow: 5px 5px 3px #aaaaaa;border: 1px solid #aaaaaa;\">"

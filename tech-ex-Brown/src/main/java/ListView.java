@@ -32,7 +32,7 @@ public class ListView extends HttpServlet {
 		// TODO: Get and display List!
 		response.setContentType("text/html");
 		response.getWriter().append(
-			"<div style=\"background-color:afafaf;padding:10px;display:flex;justify-content:space-between;\">"
+			"<div style=\"background-color:4281f5;padding:10px;display:flex;justify-content:space-between;\">"
 			+ "	<h1 style=\"color:white; text-align:center;\">My To-Do List</h1>"
 			+ "<button onclick=\"location.href='new_task.html'\">Add Task</button>"
 			//Was going to use an anchor here, but found a way to have buttons access links.
@@ -54,11 +54,11 @@ public class ListView extends HttpServlet {
 					+ "	<h3>%s</h3>"
 					+ "	<h4>%s</h4>"
 					+ "	<p>%s</p>"
-					+ "	<form action\"TaskEdit\" method=\"POST\">"
+					+ "	<form action=\"EditTask\" method=\"GET\">"
 					+ "		<button type=\"sumbit\" name=\"button\" value=\"edit\">Edit</button>"
 					+ "		<input type=\"text\" name=\"id\" value=\"%s\" style=\"display:none;\">"
 					+ "	</form>"
-					+ "<form action\"DeleteTask\" method=\"POST\">"
+					+ "<form action=\"DeleteTask\" method=\"POST\">"
 					+ "		<button type=\"sumbit\" name=\"button\" value=\"delete\">Delete</button>"
 					+ "		<input type=\"text\" name=\"id\" value=\"%s\" style=\"display:none;\">"
 					+ "	</form>"
